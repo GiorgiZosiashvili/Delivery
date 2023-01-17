@@ -1,0 +1,26 @@
+const COLORS = {
+  Primary1_light: "#C1282D",
+  Primary1_dark: "#971F23",
+  Primary2: "#F9EAEA",
+  Secondary1_light: "#6BB229",
+  Secondary1_dark: "#609F0D",
+  Secondary2_light: "#2185D0",
+  Secondary2_dark: "#046ECF",
+  Secondary3_light: "#FFC34F",
+  Secondary3_dark: "#FFA927",
+  Accent1: "#FFCC00",
+  Accent2: "#C73E42",
+  Neutral0: "#1B1B1B",
+  Neutral1: "#666666",
+  Neutral2: "#828282",
+  Neutral3: "#ABABAB",
+  Neutral4: "#C4C4C4",
+  Neutral5: "#E1E1E1",
+  Neutral5_dark: "#393939",
+  Neutral6: "#EBEBEB",
+  Neutral7: "#F3F3F3",
+  Neutral8: "#EBEBEB",
+  Neutral9: "#FFFFFF",
+};
+
+export default COLORS;

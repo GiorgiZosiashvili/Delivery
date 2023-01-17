@@ -1,20 +1,63 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from "react-native";
+
+import Navigation from "./src/navigation/Navigation";
+
+import { useFonts } from "expo-font";
+
+import { StatusBar } from "expo-status-bar";
+
+import OnBoardingScreen from "./src/screens/OnBoardingScreen";
+
+import { useState } from "react";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
-  return (
+  const [onboardingCompleted, setOnBoardingCompleted] = useState(true);
+  const [loaded] = useFonts({
+    Regular: require("./assets/fonts/AvertaStd-Regular.ttf"),
+    Semibold: require("./assets/fonts/AvertaStd-Semibold.ttf"),
+    IconMoon: require("./assets/fonts/icomoon.ttf"),
+  });
+
+  if (!loaded) {
+    return null;
+  }
+
+  const storeData = async (onboardingCompleted) => {
+    try {
+      await AsyncStorage.setItem("OnBoarding", onboardingCompleted);
+    } catch (e) {
+      ("Error Bitch!!!");
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("OnBoarding");
+
+      if (value !== null) {
+        storeData();
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+
+  getData();
+
+  return onboardingCompleted ? (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Navigation />
+      <StatusBar style="dark" />
     </View>
+  ) : (
+    <OnBoardingScreen {...{ setOnBoardingCompleted }} />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
